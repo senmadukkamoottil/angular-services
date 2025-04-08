@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from './product.model';
-import { productsArray } from './products-data';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'bot-catalog',
@@ -8,10 +8,12 @@ import { productsArray } from './products-data';
   styleUrls: ['./catalog.component.css'],
 })
 export class CatalogComponent {
-  products: Product[] = productsArray;
+  products: Product[] = [];
   private cart: Product[] = [];
 
-  constructor() { }
+  constructor(private productsService: ProductsService) {
+    this.products = this.productsService.getProducts();
+  }
 
   addToCart(product: Product) {
     this.cart.push(product);

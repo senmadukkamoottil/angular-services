@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ProductsService } from '@catalog/products.service';
 import { Product } from '@shared/product.model';
 
 @Component({
@@ -9,8 +10,13 @@ import { Product } from '@shared/product.model';
 export class ProductDetailsComponent {
   @Input() product!: Product;
 
+  constructor(private productsService: ProductsService) {
+
+  }
+
   getImageUrl(product: Product) {
     if (!product) return '';
     return '/assets/images/' + product.imageName;
   }
+
 }
