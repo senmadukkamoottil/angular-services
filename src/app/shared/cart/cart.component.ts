@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product.model';
 import { ProductsService } from '@catalog/products.service';
+import { CartService } from '@core/site-header/cart.service';
 
 @Component({
   selector: 'bot-cart',
@@ -9,20 +10,20 @@ import { ProductsService } from '@catalog/products.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private cartService: CartService) { }
 
   ngOnInit() { }
 
   get cartItems() {
-    return this.productsService.cart;
+    return this.cartService.cart;
   }
 
   get cartTotal(): number {
-    return this.productsService.getCartTotal();
+    return this.cartService.getCartTotal();
   }
 
   removeFromCart(product: Product) {
-    this.productsService.removeFromCart(product);
+    this.cartService.removeFromCart(product);
   }
 
   getImageUrl(product: Product) {

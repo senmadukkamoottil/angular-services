@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../product.model';
 import { productsArray } from '../products-data'
 import { ProductsService } from '@catalog/products.service';
+import { CartService } from '@core/site-header/cart.service';
 
 @Component({
   selector: 'bot-search',
@@ -12,11 +13,11 @@ export class SearchComponent {
   searchTerm: string = '';
   cart: Product[] = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService, private cartService: CartService) { }
 
 
   addToCart(product: Product) {
-    this.productsService.addToCart(product);
+    this.cartService.addToCart(product);
   }
 
   filter(event: Event) {

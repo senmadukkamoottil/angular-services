@@ -8,7 +8,6 @@ import { productsArray } from './products-data';
 
 export class ProductsService {
   products: Product[] = [];
-  cart: Product[] = [];
   searchTerm: string = '';
 
   constructor() {
@@ -26,24 +25,4 @@ export class ProductsService {
         (product: Product) => product.name.toLowerCase().includes(searchTerm)
       );
   }
-
-  addToCart(product: Product): void {
-    this.cart.push(product);
-  }
-
-  get cartItems(): Product[] {
-    return this.cart;
-  }
-
-  getCartTotal(): number {
-    return this.cart.reduce((prev, next) => {
-      let discount = next.discount && next.discount > 0 ? 1 - next.discount : 1;
-      return prev + next.price * discount;
-    }, 0);
-  }
-
-  removeFromCart(product: Product) {
-    this.cart = this.cart.filter(p => p.id !== product.id);
-  }
-
 }
