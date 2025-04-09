@@ -13,7 +13,7 @@ export class CatalogComponent {
   private cart: Product[] = [];
 
   constructor(private productsService: ProductsService, private cartService: CartService) {
-    this.products = this.productsService.getProducts();
+    this.productsService.getProducts().subscribe(response => this.products = response);
   }
 
   addToCart(product: Product) {
