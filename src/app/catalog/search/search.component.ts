@@ -3,6 +3,7 @@ import { Product } from '../product.model';
 import { productsArray } from '../products-data'
 import { ProductsService } from '@catalog/products.service';
 import { CartService } from '@core/site-header/cart.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bot-search',
@@ -10,6 +11,7 @@ import { CartService } from '@core/site-header/cart.service';
   styleUrls: ['./search.component.css'],
 })
 export class SearchComponent {
+  products$: Observable<Product[]> = this.productsService.getProducts();
   searchTerm: string = '';
   cart: Product[] = [];
 

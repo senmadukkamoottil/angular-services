@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from './product.model';
 import { ProductsService } from './products.service';
 import { CartService } from '@core/site-header/cart.service';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'bot-catalog',
@@ -9,11 +10,10 @@ import { CartService } from '@core/site-header/cart.service';
   styleUrls: ['./catalog.component.css'],
 })
 export class CatalogComponent {
-  products: Product[] = [];
+  products$: Observable<Product[]> = this.productsService.getProducts();
   private cart: Product[] = [];
 
   constructor(private productsService: ProductsService, private cartService: CartService) {
-    this.productsService.getProducts().subscribe(response => this.products = response);
   }
 
   addToCart(product: Product) {

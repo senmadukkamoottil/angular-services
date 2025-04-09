@@ -1,7 +1,7 @@
 <div class="container">
   <input class="search" placeholder="Search..." (keyup)="filter($event)" />
   <ul class="products">
-    <li class="product-item" *ngFor="let product of getFilteredProducts()">
+    <li class="product-item" *ngFor="let product of products$ | async">
       <bot-product-details [product]="product">
         <button class="cta" (click)="addToCart(product)">Buy</button>
       </bot-product-details>
