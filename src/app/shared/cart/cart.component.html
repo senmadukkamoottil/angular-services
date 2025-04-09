@@ -11,5 +11,5 @@
       </bot-product-details>
     </li>
   </ul>
-  <div class="total">Total: {{ cartTotal | currency }}</div>
+  <div *ngIf="cartItems.length" class="total">Total: {{ cartTotal | currency }}</div>
 </div>
